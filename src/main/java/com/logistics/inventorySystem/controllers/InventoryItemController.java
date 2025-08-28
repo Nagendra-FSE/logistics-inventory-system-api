@@ -33,4 +33,8 @@ public class InventoryItemController {
        return new APIResponse<>(201, "Inventory item created succesfully");
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteMethod(@PathVariable Long id) {
+        inventoryService.delete(id);
+    }
 }

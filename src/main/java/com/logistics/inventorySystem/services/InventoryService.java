@@ -28,4 +28,8 @@ public class InventoryService {
 
        return inventoryRepo.save(item);
     }
+
+    public void delete(Long id) {
+        inventoryRepo.deleteById(id);
+    }
 }
