@@ -37,4 +37,14 @@ public class InventoryItemController {
     public void deleteMethod(@PathVariable Long id) {
         inventoryService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public APIResponse<?> editInventory(@RequestBody InventoryItemDTO item, @PathVariable Long id) {
+        try {
+            inventoryService.edit(item, id);
+            return new APIResponse(202, "inventory item updated");
+        } catch(RuntimeException e) {
+            return new APIResponse(404, e.getMessage());
+        }
+    }
 }
