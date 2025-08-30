@@ -32,4 +32,15 @@ public class InventoryService {
     public void delete(Long id) {
         inventoryRepo.deleteById(id);
     }
+
+    public InventoryItem edit(InventoryItemDTO data, Long id){
+       InventoryItem oldItem = inventoryRepo.findById(id)
+               .orElseThrow(() -> new RuntimeException("inventory id is not found"));
+        oldItem.setItemName( data.itemName());
+        oldItem.setQuantity( data.quantity());
+        oldItem.setLocation( data.location());
+        oldItem.setStatus( data.status());
+
+        return inventoryRepo.save(oldItem);
+    }
 }
